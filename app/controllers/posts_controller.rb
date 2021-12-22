@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
+    authorize_resource
     before_action :authorized, except: [:show, :index, :search]
+    before_action :find_post, except: [:create, :index, :search]
 
     def create 
-        @post = Post.new(post_params)
-        @post.save
+        @post = Post.create(post_params)
     end
 
     def show
-        @post = Post.find(params[:id])
         render json: @post
     end
 
@@ -17,24 +17,26 @@ class PostsController < ApplicationController
     end
 
     def update 
-        @post = Post.find(params[:id])
         @post.update(post_params)
     end
 
     def destroy 
-        @post = Post.find(params[:id])
         @post.destroy
     end
 
-    def search
-        @search = Post.search(params[:q])
-        @posts = @search.result
-        render json: @posts
-    end
+    # def search
+    #     @search = Post.search(params[:q])
+    #     @posts = @search.result
+    #     render json: @posts
+    # end
 
     private
 
     def post_params
-        params.require(:post).permit(:title, :body, :created_by)
+        params.require(:post).permit(:title, :body, :user_id)
+    end
+
+    def find_post
+        @post = Post.find(params[:id])
     end
 end

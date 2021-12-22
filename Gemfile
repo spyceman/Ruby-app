@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.0.rc1"
+gem "rails", "~> 7.0.0"
 
 
 
@@ -49,16 +49,22 @@ end
 
 gem "pg", "~> 1.2"
 
-
-
 gem "jwt", "~> 2.3"
 
 gem "bcrypt", "~> 3.1"
-
-
 
 gem "rack-cors", "~> 1.1"
 
 gem "kaminari", "~> 1.2"
 
-gem "ransack", "~> 2.4"
+#gem "ransack", "~> 2.4"
+
+gem "rspec", "~> 3.10"
+
+gem "cancancan", "~> 3.3"
+
+gem "sidekiq", "~> 6.3"
+
+gem "rspec-rails", "~> 5.0"
+
+gem "rails-controller-testing", "~> 1.0"
